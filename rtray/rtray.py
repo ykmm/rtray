@@ -8,14 +8,6 @@ import wx
 
 import RtrayController as controller
 
-__author__ = "Yann Melikoff"
-__copyright__ = "Copyright 2011"
-__credits__ = ["Yann Melikoff"]
-__license__ = "GPL"
-__version__ = "0.1.0"
-__email__ = "yakemema@gmail.com"
-__status__ = "Development"
-
 #Uncomment to show debug and info
 #logging.basicConfig(level=logging.INFO, filename='rtray.log')
 

@@ -18,14 +18,6 @@ import wx
 import pycurl
 import yaml
 
-__author__ = "Yann Melikoff"
-__copyright__ = "Copyright 2011"
-__credits__ = ["Yann Melikoff"]
-__license__ = "GPL"
-__version__ = "0.1.0"
-__email__ = "yakemema@gmail.com"
-__status__ = "Development"
-
 class RtrayPycurl():
     """RtrayPycurl instance of Pycurl with a series of options already set."""
     def __init__(self, writecookies = False):
