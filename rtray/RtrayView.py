@@ -8,13 +8,14 @@ from wx.lib.wordwrap import wordwrap
 
 from RtrayViewWxg import RttrayFrame, AuthFrame
 import logging
+logger = logging.getLogger(__name__)
 
 __author__ = "Yann Melikoff"
 __copyright__ = "Copyright 2011"
 __credits__ = ["Yann Melikoff"]
 __license__ = "GPL"
-__version__ = "0.1"
-__email__ = "yann punto cappa emme emme chiocciola gmail punto com"
+__version__ = "0.1.0"
+__email__ = "yakemema@gmail.com"
 __status__ = "Development"
 
 class Icon(wx.TaskBarIcon):
@@ -27,7 +28,7 @@ class Icon(wx.TaskBarIcon):
         self.menuitems = menuitems
         self.current_status = None
         self.tooltip = u''
-        
+
         # icon state
         self.states = {
             u"idle": wx.Icon("assets/rtray_idle.ico", wx.BITMAP_TYPE_ICO),
@@ -42,7 +43,7 @@ class Icon(wx.TaskBarIcon):
         self.menu = wx.Menu()
         for id, item in enumerate(self.menuitems):
             self.menu.Append(id, item)
-            
+
     def click(self, event):
         """shows the menu"""
         self.PopupMenu(self.menu)
@@ -60,7 +61,7 @@ class Icon(wx.TaskBarIcon):
 
     def setStatus(self, which):
         """sets the icon status"""
-        logging.info("Icon:setStatus(%s)" % (which,))
+        logger.debug("Icon:setStatus(%s)" % (which,))
         self.SetIcon(self.states[which], self.tooltip)
         #self.SetIcon(self.states[which])
         self.current_status = which
@@ -72,12 +73,12 @@ class Icon(wx.TaskBarIcon):
 
 class RtrayAuth(AuthFrame):
     def __init__(self, *args, **kwds):
-        AuthFrame.__init__(self, *args, **kwds)  
-        
+        AuthFrame.__init__(self, *args, **kwds)
+
 
 class RtrayView(RttrayFrame):
     def __init__(self, *args, **kwds):
-        RttrayFrame.__init__(self, *args, **kwds)  
+        RttrayFrame.__init__(self, *args, **kwds)
         #self.frame = rtrayFrame('rtray',(300,300),(600,400))
         #self.frame.Show()
         #self.SetTopWindow(self.frame)e
@@ -94,8 +95,8 @@ class RtrayView(RttrayFrame):
         #About box
         self.info = wx.AboutDialogInfo()
         self.info.Name = "Rtray"
-        self.info.Version = "0.1 Beta"
-        self.info.Copyright = "(C) 2011 Python Geeks Everywhere"
+        self.info.Version = "0.1.0 Beta"
+        self.info.Copyright = "(C) 2011 Yann Melikoff"
         self.info.Description = wordwrap(
             "System tray Icon that periodically checks for "
             "updated tickets in observed queries",
@@ -103,32 +104,25 @@ class RtrayView(RttrayFrame):
         #self.info.WebSite = ("http://www.pythonlibrary.org", "My Home Page")
         self.info.Developers = ["Yann Melikoff"]
         #self.info.License = wordwrap("Completely and totally open source!", 500, wx.ClientDC(self))
-        
+
     def test(self,event):
         print "on_mouse",event
-    
+
     def on_enter_windows(self,event):
         print "on_enter_windows",event
 
     def on_leave_windows(self,event):
         print "on_leave_windows",event
-        
+
     def update_domain_list(self,domainList):
         print self.frame.update_domain_list(domainList)
-
-    def update_domain_auth_info(self,domainAuthInfo,domain):
-        logging.info("rtrayView:update_domain_auth_info()")
-        for service in domainAuthInfo:
-            self.frame.nb.tabs[service].domField.SetValue(domain)
-            self.frame.nb.tabs[service].unField.SetValue(domainAuthInfo[service]['user'])
-            self.frame.nb.tabs[service].pwField.SetValue(domainAuthInfo[service]['pass'])
 
     def about_dlg(self, event):
         # Show the wx.AboutBox
         wx.AboutBox(self.info)
-    
+
 if __name__ == '__main__':
-    logging.basicConfig(level = logging.INFO)
+    #logging.basicConfig(level = logging.INFO)
     app = wx.PySimpleApp(0)
     wx.InitAllImageHandlers()
     view = rtrayView(None, -1, "")

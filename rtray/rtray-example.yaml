@@ -1,0 +1,13 @@
+format: l
+reststr: /REST/1.0/search/ticket
+logouturl: '/REST/1.0/logout'
+rturl: http://rt.easter-eggs.org/demos/4.2
+searches:
+    - {query: Creator= '@ME@' AND (Status = 'new' OR Status = 'open' OR Status = 'stalled'), title: Opened by me}
+    - {query: Creator = '__CurrentUser__' AND (  Status = 'resolved' OR Status = 'rejected'), title: Opened by me and closed/rejected}
+    - {query: Queue = '1454 Client Project' AND (Status = 'new' OR Status = 'open' OR Status = 'stalled'), title: Observed queue}
+    - {query: (Status = 'new' OR Status = 'open' OR Status = 'stalled'), title: New or open queue}
+    - {query: Owner= 'Nobody' AND ( Status = 'new' OR Status = 'open' OR Status = 'stalled'), title: Unassigned Tickets}
+    - {query: Owner= 'Nobody' AND ( Status = 'new' OR Status = 'open' OR Status = 'stalled'), title: Unassigned Tickets}
+
+username: !!python/unicode 'john.foo'
