@@ -11,7 +11,7 @@ import RtrayController as controller
 #Uncomment to show debug and info
 #logging.basicConfig(level=logging.INFO, filename='rtray.log')
 
-if __name__ == '__main__':
+def main():
     logging.config.fileConfig('logging.conf', disable_existing_loggers=False)
     logger = logging.getLogger(__name__)
     #logging.getLogger().setLevel(level=logging.DEBUG)
@@ -22,3 +22,7 @@ if __name__ == '__main__':
     contr = controller.RtrayController('rtray.yaml')
     app.MainLoop()
     logger.info("Ending rtray")
+    
+
+if __name__ == '__main__':
+    main()
