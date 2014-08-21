@@ -13,10 +13,23 @@ setup(
     description=rtray.__doc__,
     packages=['rtray'],
     install_requires=['pycurl',
-                      'yaml>=3.10',
-                      'wx>=2.8.12.1',
+                      'pyaml>=3.10'
                       ],
+    data_files=[('assets', ['rtray/assets/rtray.ico',
+                            'rtray/assets/rtray_alert.ico',
+                            'rtray/assets/rtray_blink_on.ico',
+                            'rtray/assets/rtray_blink_off.ico',
+                            'rtray/assets/rtray_error.ico',
+                            'rtray/assets/rtray_idle.ico',
+                            'rtray/assets/rtray_load.ico']),
+                ('.', ['rtray/rtray.yaml',
+                       'rtray/rtray-example.yaml',
+                       'rtray/logging.conf'])], 
+    #scripts = ['rtray/rtray.py'],  #Install as executable script
+    entry_points="""[console_scripts]
+    rtray = rtray.rtray:main
+    """,
     options = {'py2exe': {'bundle_files': 1}},
-    windows = [{'script': "rtray.py"}],
-    zipfile = None,
+    #windows = [{'script': "rtray.py"}],
+    #zipfile = None,
 )
